@@ -1,0 +1,27 @@
+<!doctype html>
+<html> 
+ <head> 
+  <title>Simple HTML Example</title> 
+ </head> 
+ <body> 
+  <h1>Welcome to BCA</h1> 
+  <h2>Student Information</h2> 
+  <h3>G.Aarthi</h3> 
+  <h3>Department: Bachelor of computer application</h3> 
+  <h3>Year: 2nd Year</h3> 
+  <h3>reg no.: 24131060500122001</h3> 
+  <h4>Shree Raghavendra Arts and Science College</h4>
+  <br> 
+  <img src="https://images.unsplash.com/photo-1607746882042-944635dfe10e?w=200" alt="Student Image" width="200" height="200"> 
+  <br>
+  <br> 
+  <ul>
+    <li>Apple</li>
+    <li>Orange</li>
+  </ul>
+  <ol>
+    <li>BCA</li>
+    <li>Ds</li>
+  </ol>
+ </body>
+</html>
