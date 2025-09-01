@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Details - Flip Card</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Define a custom gradient background for the body */
+        body {
+            background: linear-gradient(to bottom right, #e2e8f0, #cbd5e1);
+            font-family: 'Inter', sans-serif;
+        }
+        
+        /* ------------------------------------------- */
+        /* CSS for Floating & Glowing Card */
+        /* ------------------------------------------- */
+        .card {
+            background-color: white;
+            border-radius: 2rem;
+            max-width: 24rem;
+            width: 90%;
+            height: 38rem;
+            padding: 0; 
+            cursor: pointer;
+            
+            /* **3D Flip setup** */
+            perspective: 1000px; 
+            
+            /* **Animations** */
+            animation: 
+                cardFloat 4s ease-in-out infinite, 
+                cardGlow 2s ease-in-out infinite alternate; 
+        }
+        
+        /* Optional: Add a slight press-down effect on hover/click */
+        .card:hover {
+            transform: scale(0.98); 
+        }
+
+        /* ------------------------------------------- */
+        /* CSS for 3D Flip Transition */
+        /* ------------------------------------------- */
+        #card-inner {
+            /* This is the element that flips */
+            transform-style: preserve-3d;
+            transition: transform 0.7s; 
+        }
+
+        /* Class added by JavaScript to trigger the flip */
+        .is-flipped {
+            transform: rotateY(180deg);
+        }
+
+        .card-face {
+            /* Hiding the reverse side of the face during flip */
+            backface-visibility: hidden; 
+            background-color: white;
+            border-radius: 2rem; 
+            position: absolute;
+            inset: 0;
+            /* Relative position needed for absolute logo positioning */
+            position: relative; 
+            overflow: hidden;
+        }
+        
+        /* Initial state of the back face (rotated 180deg so it's hidden) */
+        .card-back {
+            transform: rotateY(180deg);
+        }
+        
+        /* ------------------------------------------- */
+        /* NEW: Back Page Logo Watermark Style - Position adjusted to the bottom blank space */
+        /* ------------------------------------------- */
+        .back-logo-watermark {
+            position: absolute;
+            /* Positioned lower (70%) to fall into the blank space below contact details */
+            top: 70%; 
+            left: 50%;
+            transform: translate(-50%, -50%); 
+            width: 70%; 
+            height: auto;
+            opacity: 0.08; 
+            pointer-events: none; 
+            z-index: 0; 
+        }
+        
+        /* ------------------------------------------- */
+        /* Keyframes for Floating & Glowing */
+        /* ------------------------------------------- */
+        @keyframes cardFloat {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-10px); } 
+            100% { transform: translateY(0); }
+        }
+        
+        @keyframes cardGlow {
+            0% {
+                box-shadow: 
+                    0 20px 25px -5px rgba(0, 0, 0, 0.1), 
+                    0 0 10px rgba(147, 51, 234, 0.4); 
+            }
+            100% {
+                box-shadow: 
+                    0 20px 30px -5px rgba(0, 0, 0, 0.2), 
+                    0 0 25px rgba(147, 51, 234, 0.9); 
+            }
+        }
+
+        /* Other common styles */
+        .gradient-line {
+            height: 4px;
+            background: linear-gradient(to right, #6366f1, #9333ea);
+            border-radius: 2px;
+        }
+        .photo-circle {
+            width: 8rem;
+            height: 8rem;
+            border: 2px solid #cbd5e1;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body class="flex flex-col items-center justify-center min-h-screen p-4">
+
+    <div id="card-container" class="card">
+        
+        <div id="card-inner" class="h-full relative transition-transform duration-700 ease-in-out" style="transform-style: preserve-3d;">
+        
+            <div id="id-card-page" class="card-face card-front absolute inset-0 p-8 h-full flex flex-col justify-between">
+                <div class="flex flex-col items-center flex-grow">
+                    <div class="flex flex-col items-center mb-6">
+                        <img src="https://raw.githubusercontent.com/pavithraG777/pavithra-portfolio/main/ragavendira-logo.jpeg" onerror="this.onerror=null;this.src='https://placehold.co/120x40/d1d5db/374151?text=SHREE+RAGHAVENDRA';" alt="College Logo" class="w-32 h-auto mb-2 rounded">
+                        <h1 class="text-sm font-bold text-center">SHREE RAGHAVENDRA ARTS AND SCIENCE COLLEGE</h1>
+                        <p class="text-xs text-gray-500 text-center">(Affiliated To Annamalai University)</p>
+                        <p class="text-[0.6rem] text-gray-400 text-center mt-1">keezhamoongilai  , CHIDAMBARAM - 608102</p>
+                    </div>
+                    
+                    <h2 class="text-xl font-bold mb-4">Student ID Card</h2>
+                    
+                    <div class="gradient-line w-full mb-8"></div>
+                    
+                    <div class="photo-circle mb-6">
+            <img src=" " alt="photo">
+                    </div>
+                    
+                    <div class="w-full text-left space-y-4">
+                        <div class="font-semibold text-gray-700">Name: <span class="font-normal text-gray-900">G AARTHI</span></div>
+                        <div class="font-semibold text-gray-700">Department: <span class="font-normal text-gray-900">BCA</span></div>
+                        <div class="font-semibold text-gray-700">Academic Year: <span class="font-normal text-gray-900">2024-2027</span></div>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="gradient-line w-full mt-10"></div>
+                </div>
+            </div>
+
+            <div id="personal-details-page" class="card-face card-back absolute inset-0 p-8 h-full flex flex-col justify-between">
+                
+                <img src="https://photos.app.goo.gl/xq5hL1Us2EzzsSPN6"/alt="College Logo Watermark" class="back-logo-watermark">
+
+                <div class="flex flex-col items-center flex-grow z-10">
+                    <h2 class="text-xl font-bold mb-8">Personal Details</h2>
+                    
+                    <div class="w-full text-left space-y-4">
+                        <div class="font-semibold text-gray-700">Father's Name: <span class="font-normal text-gray-900">R Gnanavel</span></div>
+                        <div class="font-semibold text-gray-700">Date of Birth: <span class="font-normal text-gray-900">March 09 2007</span></div>
+                        <div class="font-semibold text-gray-700">Blood Group: <span class="font-normal text-gray-900">O+ve</span></div>
+                        <div class="font-semibold text-gray-700">Address: <span class="font-normal text-gray-900">1128,Thirupaninatham Main road,Keerapalayam, Chidambaram 608002</span></div>
+                        <div class="font-semibold text-gray-700">Contact no: <span class="font-normal text-gray-900">8883864866</span></div>
+                    </div>
+                </div>
+                
+                <div class="z-10">
+                    <div class="gradient-line w-full mt-10"></div>
+                </div>
+            </div>
+
+        </div> </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const cardContainer = document.getElementById('card-container');
+            const cardInner = document.getElementById('card-inner');
+
+            // Function to toggle the flip (3D transition)
+            function togglePages() {
+                // Toggle the 'is-flipped' class on the inner element
+                cardInner.classList.toggle('is-flipped');
+            }
+
+            // Event listener for the entire card container
+            cardContainer.addEventListener('click', togglePages);
+        });
+    </script>
+</body>
+</html>
